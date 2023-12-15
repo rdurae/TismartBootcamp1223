@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCTismartLibrary", "MVCTismartLibrary\MVCTismartLibrary.csproj", "{D43F8725-9305-407C-BDE4-B324D0FC95E1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8F1D4B97-0DD1-4E13-B670-4FA59A458587} = {8F1D4B97-0DD1-4E13-B670-4FA59A458587}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTismartLibrary", "WCFTismartLibrary\WCFTismartLibrary.csproj", "{8F1D4B97-0DD1-4E13-B670-4FA59A458587}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D43F8725-9305-407C-BDE4-B324D0FC95E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D43F8725-9305-407C-BDE4-B324D0FC95E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D43F8725-9305-407C-BDE4-B324D0FC95E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D43F8725-9305-407C-BDE4-B324D0FC95E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F1D4B97-0DD1-4E13-B670-4FA59A458587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F1D4B97-0DD1-4E13-B670-4FA59A458587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F1D4B97-0DD1-4E13-B670-4FA59A458587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F1D4B97-0DD1-4E13-B670-4FA59A458587}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15AA80FC-E7F5-4351-8F94-8162D84CAC48}
+	EndGlobalSection
+EndGlobal

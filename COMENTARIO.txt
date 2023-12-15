@@ -1,0 +1,19 @@
+Fernando, buenas noches.
+
+Del reto, decidí enfocarme en la regla de negocio sobre los libros pero al no dimensionar bien el problema
+no puede realizar el login. Entiendo que con un Session hubiera podido hacer reservas
+entre distintos usuarios. Tuve que hardcodear a un sólo usuario de id:1
+
+Tampoco pude realizar algunas características de interfaz como el diálogo modal,
+estuve leyendo bastante sobre partialView y como exponer un modal de bootstrap
+pero sin resultado por lo que tuve que recurrir a la gestión de la reserva con un boton de hipervinculo
+que se genera con el scaffolding para Vistas. No tengo mucha experiencia en FrontEnd.
+
+Lo que pude realizar fue el WCF que se comunica con los procedimientos almacenados necesarios a la base de datos
+y la visualización de los libros y su estado actual. Empiezan sin fecha de reserva y sin check de reserva.
+Se verifica que no esté previamente reservado para realizarlo.
+
+Debe iniciar el proyecto WCF y luego el proyecto de MVC.
+
+Muchas gracias
+

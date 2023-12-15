@@ -1,0 +1,7 @@
+C:\Users\rdurae\source\repos\TismartLibrary\WCFTismartLibrary\bin\WCFTismartLibrary.dll.config
+C:\Users\rdurae\source\repos\TismartLibrary\WCFTismartLibrary\bin\WCFTismartLibrary.dll
+C:\Users\rdurae\source\repos\TismartLibrary\WCFTismartLibrary\bin\WCFTismartLibrary.pdb
+C:\Users\rdurae\source\repos\TismartLibrary\WCFTismartLibrary\obj\Debug\WCFTismartLibrary.csproj.AssemblyReference.cache
+C:\Users\rdurae\source\repos\TismartLibrary\WCFTismartLibrary\obj\Debug\WCFTismartLibrary.csproj.CoreCompileInputs.cache
+C:\Users\rdurae\source\repos\TismartLibrary\WCFTismartLibrary\obj\Debug\WCFTismartLibrary.dll
+C:\Users\rdurae\source\repos\TismartLibrary\WCFTismartLibrary\obj\Debug\WCFTismartLibrary.pdb
