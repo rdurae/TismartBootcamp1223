@@ -13,7 +13,8 @@ Lo que pude realizar fue el WCF que se comunica con los procedimientos almacenad
 y la visualización de los libros y su estado actual. Empiezan sin fecha de reserva y sin check de reserva.
 Se verifica que no esté previamente reservado para realizarlo.
 
-Debe iniciar el proyecto WCF y luego el proyecto de MVC.
+Debe iniciar el proyecto WCF y luego el proyecto de MVC. Sobre la base de datos, fue hecha
+en SQLExpress y en la carpeta db están los scritps y el .bak.
 
 Muchas gracias
 
