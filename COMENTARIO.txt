@@ -22,3 +22,7 @@ Muchas gracias
 
 - Se agregó Login con Session de un minuto.
 - Onclick en tr de tabla funciona, queda pendiente agregar eventos de confirmacion.
+
+//////////////////////////////
+
+- Se agregó validacion de usuarion en WCF si es que existe y si está activo
