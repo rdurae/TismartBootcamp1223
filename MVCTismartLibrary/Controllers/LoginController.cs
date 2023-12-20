@@ -20,14 +20,26 @@ namespace MVCTismartLibrary.Controllers
         [HttpPost]
         public ActionResult Index(LoginDto loginDto)
         {
-
             if (loginDto.Email.IsNullOrWhiteSpace() || loginDto.Password.IsNullOrWhiteSpace())
             {
                 ViewBag.LoginError = "Ingrese datos válidos";
                 return View();                
             }
-
+   
             var wcfTismartLibraryService = new TismartLibraryService.Service1Client();
+
+            bool isUserValid = wcfTismartLibraryService.IsValidUser(new TismartLibraryService.UserCredentials
+            {
+                Email = loginDto.Email,
+                Password = loginDto.Password,
+            });
+
+            if (isUserValid == false)
+            {
+                ViewBag.LoginError = "Usuario inexistente o desactivado";
+                return View();
+            }
+
             var user = wcfTismartLibraryService.GetUser(loginDto.Email);
 
             if (user != null && loginDto.Email == user.Email && loginDto.Password == user.Password)

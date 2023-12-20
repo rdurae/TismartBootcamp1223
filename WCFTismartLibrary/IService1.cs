@@ -33,6 +33,9 @@ namespace WCFTismartLibrary
 
         [OperationContract]
         User GetUser(string email);
+
+        [OperationContract]
+        bool IsValidUser(UserCredentials userCredentials);
     }
 
     // Utilice un contrato de datos, como se ilustra en el ejemplo siguiente, para agregar tipos compuestos a las operaciones de servicio.
@@ -96,5 +99,14 @@ namespace WCFTismartLibrary
         public string Password { get; set; }
         [DataMember]
         public bool isActive { get; set; }
+    }
+
+    [DataContract]
+    public class UserCredentials
+    {
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string Password { get; set; }
     }
 }

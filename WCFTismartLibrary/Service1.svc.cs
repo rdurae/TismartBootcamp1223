@@ -74,9 +74,11 @@ namespace WCFTismartLibrary
 
         public User GetUser(string email)
         {
-            if(email == null)            
-                throw new Exception("precisa de email");
-            
+            if(email == null)
+            { 
+                throw new Exception("Email required");
+            }
+
             _connection.Open();
 
             var user = new User();
@@ -84,9 +86,6 @@ namespace WCFTismartLibrary
             SqlCommand sqlCmd = new SqlCommand("SpUserRetrieval", _connection);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@email", email);
-
-
-            //sqldatareader
 
             SqlDataReader sqlDataReader = sqlCmd.ExecuteReader();
             while (sqlDataReader.Read())
@@ -102,6 +101,27 @@ namespace WCFTismartLibrary
             _connection.Close();
 
             return user;
+        }
+
+        public bool IsValidUser(UserCredentials userCredentials)
+        {
+            if (userCredentials.Email == null || userCredentials.Password == null)
+            {
+                throw new Exception("Credentials are required");
+            }
+
+            _connection.Open();
+
+            SqlCommand sqlCmd = new SqlCommand("SpValidateUser", _connection);
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Parameters.AddWithValue("@email", userCredentials.Email);
+            sqlCmd.Parameters.AddWithValue("@password", userCredentials.Password);
+
+            int count = (int)sqlCmd.ExecuteScalar();
+
+            _connection.Close();
+
+            return count > 0;
         }
 
         public IEnumerable<BookReservation> ListBooksReservations()
