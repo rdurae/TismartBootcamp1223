@@ -6,12 +6,13 @@
 
 }
 
-<h2>Disponibilidad de Libros</h2>
+<h2>Bienvenido xxx</h2>
+<h5>Disponibilidad de Libros</h5>
 
 <table class="table">
     <tr>
         <th>
-           Index
+            Index
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Code)
@@ -28,31 +29,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @index
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTimeReservation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsReserved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
-            @Html.ActionLink("Reservar", "Reserve", new { id = item.Id })
-        </td>
-    </tr>
-    index++;
-}
+    @foreach (var item in Model)
+    {
+        <tr class="clickable-row" data-bs-toggle="modal" data-bs-target="#myPartialModal">
+            <td>
+                @index
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeReservation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsReserved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                @Html.ActionLink("Reservar", "Reserve", new { id = item.Id })
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myPartialModal">
+                    Usando HTML.Partial
+                </button>
+
+
+
+            </td>
+        </tr>
+        index++;
+    }
 
 </table>
+
+@Html.Partial("_Modal")
+

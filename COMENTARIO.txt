@@ -18,3 +18,7 @@ en SQLExpress y en la carpeta db están los scritps y el .bak.
 
 Muchas gracias
 
+///////////////////////////////
+
+- Se agregó Login con Session de un minuto.
+- Onclick en tr de tabla funciona, queda pendiente agregar eventos de confirmacion.

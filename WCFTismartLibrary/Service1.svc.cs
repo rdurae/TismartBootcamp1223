@@ -72,6 +72,38 @@ namespace WCFTismartLibrary
             return composite;
         }
 
+        public User GetUser(string email)
+        {
+            if(email == null)            
+                throw new Exception("precisa de email");
+            
+            _connection.Open();
+
+            var user = new User();
+            
+            SqlCommand sqlCmd = new SqlCommand("SpUserRetrieval", _connection);
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Parameters.AddWithValue("@email", email);
+
+
+            //sqldatareader
+
+            SqlDataReader sqlDataReader = sqlCmd.ExecuteReader();
+            while (sqlDataReader.Read())
+            {
+                user.Id = int.Parse(sqlDataReader[0].ToString());
+                user.FirstName = sqlDataReader[1].ToString();
+                user.LastName = sqlDataReader[2].ToString();
+                user.Email = sqlDataReader[3].ToString();
+                user.Password = sqlDataReader[4].ToString();
+                user.isActive = bool.Parse(sqlDataReader[5].ToString());
+            }
+
+            _connection.Close();
+
+            return user;
+        }
+
         public IEnumerable<BookReservation> ListBooksReservations()
         {
             _connection.Open();

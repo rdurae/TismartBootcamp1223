@@ -37,6 +37,12 @@
   <wsdl:message name="IService1_BookSelection_OutputMessage">
     <wsdl:part name="parameters" element="tns:BookSelectionResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
@@ -57,6 +63,10 @@
     <wsdl:operation name="BookSelection">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/BookSelection" message="tns:IService1_BookSelection_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/BookSelectionResponse" message="tns:IService1_BookSelection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUser" message="tns:IService1_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserResponse" message="tns:IService1_GetUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -99,6 +109,15 @@
     </wsdl:operation>
     <wsdl:operation name="BookSelection">
       <soap:operation soapAction="http://tempuri.org/IService1/BookSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

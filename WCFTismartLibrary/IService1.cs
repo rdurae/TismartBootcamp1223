@@ -14,7 +14,6 @@ namespace WCFTismartLibrary
     [ServiceContract]
     public interface IService1
     {
-
         [OperationContract]
         string GetData(int value);
 
@@ -31,8 +30,10 @@ namespace WCFTismartLibrary
 
         [OperationContract]
         Book BookSelection(int id);
-    }
 
+        [OperationContract]
+        User GetUser(string email);
+    }
 
     // Utilice un contrato de datos, como se ilustra en el ejemplo siguiente, para agregar tipos compuestos a las operaciones de servicio.
     [DataContract]
@@ -79,6 +80,21 @@ namespace WCFTismartLibrary
         [DataMember]
         public bool IsReserved { get; set; }
     }
+
+    [DataContract]
+    public class User
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string FirstName { get; set; }
+        [DataMember]
+        public string LastName { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string Password { get; set; }
+        [DataMember]
+        public bool isActive { get; set; }
+    }
 }
-
-

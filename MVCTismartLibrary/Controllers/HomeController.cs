@@ -13,7 +13,7 @@ namespace MVCTismartLibrary.Controllers
         
 
         public ActionResult Index()
-        {           
+        {
             return View();
         }
 
@@ -29,6 +29,14 @@ namespace MVCTismartLibrary.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Modal()
+        {
+//            ViewBag.Message = "Your contact page.";
+
+            return PartialView("_Modal");
         }
     }
 }

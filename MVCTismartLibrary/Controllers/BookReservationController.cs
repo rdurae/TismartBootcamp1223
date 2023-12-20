@@ -12,16 +12,31 @@ namespace MVCTismartLibrary.Controllers
         TismartLibraryService.Service1Client wcfTismartLibraryService = new TismartLibraryService.Service1Client();
 
         // GET: BooksStatus
-        public ActionResult Index()
-        //public async Task<ActionResult> Index()
+        public ActionResult Index()        
         {
+            if (Session["CurrentUser"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
             var booksStatusList = wcfTismartLibraryService.ListBooksReservations();
             return View(booksStatusList);
         }
 
         // GET: BooksStatus/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
+            var book = wcfTismartLibraryService.BookSelection(id);
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Details(int id, int asdfd)
+        {
+            var book = wcfTismartLibraryService.BookSelection(id);
+
             return View();
         }
 
