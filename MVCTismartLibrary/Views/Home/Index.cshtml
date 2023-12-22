@@ -7,17 +7,13 @@
 
 @section Scripts{
     <script>
-            $(document).ready(function () {
-                // Handle button click
-                $("#loadPartialBtn").click(function () {
-                    // Make AJAX call to load partial view
+            $(document).ready(function () {                
+                $("#loadPartialBtn").click(function () {                    
                     $.ajax({
                         url: "/Home/Modal",
                         type: "GET",
-                        success: function (data) {
-                            // Inject the partial view content into the container
-                            $("#partialContainer").html(data);
-                            // Show the modal (assuming you have Bootstrap JS loaded)
+                        success: function (data) {                            
+                            $("#partialContainer").html(data);                            
                             $("#myPartialModal").modal("show");
                         },
                         error: function () {
@@ -59,9 +55,7 @@
         </section>
         <section>
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myPartialModal">
-               Usando HTML.Partial
-            </button>
+        
 
             <button type="button" class="btn btn-primary" id="loadPartialBtn">
                 Usando AJAX
@@ -69,7 +63,7 @@
 
             <div id="partialContainer"></div>
 
-            @Html.Partial("_Modal")
+          
 
 
 

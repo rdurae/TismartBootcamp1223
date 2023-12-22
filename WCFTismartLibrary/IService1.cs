@@ -80,6 +80,10 @@ namespace WCFTismartLibrary
     {
         [DataMember]
         public int Id { get; set; }
+        [DataMember] 
+        public string Code { get;set; }
+        [DataMember] 
+        public string Title { get;set; }
         [DataMember]
         public bool IsReserved { get; set; }
     }

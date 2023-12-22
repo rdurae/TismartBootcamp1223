@@ -26,3 +26,7 @@ Muchas gracias
 //////////////////////////////
 
 - Se agregó validacion de usuarion en WCF si es que existe y si está activo
+
+///////////////////////////
+
+- Se agregaron dialogos modales con bootstrap/jquery/ajax

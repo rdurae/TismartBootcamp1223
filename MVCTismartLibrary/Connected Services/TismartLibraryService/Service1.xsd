@@ -25,8 +25,10 @@
   <xs:element name="BookReservation" nillable="true" type="tns:BookReservation" />
   <xs:complexType name="Book">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsReserved" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Book" nillable="true" type="tns:Book" />

@@ -1,0 +1,54 @@
+﻿@model MVCTismartLibrary.Models.BookSelectionDto
+
+<script>
+        $(function () {
+            $('#customActionButton').click(function () {
+                var itemId = $(this).data('id');
+
+                $.ajax({
+                    url: '@Url.Action("Reserve", "BookReservation")/' + itemId,
+                    type: 'POST',
+                    //contentType: 'application/json',
+                    success: function (data) {
+                        // Handle success response
+                        console.log('request successful:');
+                        $('#itemDetailsModal').modal('hide');
+                        location.reload();                        
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response
+                        console.error('Error');
+                        //console.log('Status:', status);
+                        //console.log('Error:', error);
+                        //console.log('Response:', xhr.responseText);
+                    }
+                });
+
+
+            });
+        });
+</script>
+
+
+<div class="modal fade" id="itemDetailsModal" tabindex="-1" role="dialog" aria-labelledby="itemDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemDetailsModalLabel">Item Details</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>¿Desea reservar este libro?</strong></p>
+                Título: @Html.DisplayFor(model => model.Title) <br />
+                Código @Html.DisplayFor(model => model.Code)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="customActionButton" data-id="@Html.DisplayFor(model => model.Id)">Reservar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

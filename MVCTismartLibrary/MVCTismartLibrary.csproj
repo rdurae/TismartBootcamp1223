@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\BookSelectionDto.cs" />
     <Compile Include="Models\BookReservationModel.cs" />
     <Compile Include="Models\DTO\LoginDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -220,9 +221,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\BookReservation\Index.cshtml" />
     <Content Include="Views\Home\_Modal.cshtml" />
-    <Content Include="Views\BookReservation\_Modal.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_Alert.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\BooleanAsString.cshtml" />
+    <Content Include="Views\BookReservation\_ToReserveBook.cshtml" />
+    <Content Include="Views\BookReservation\_BookIsReserved.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

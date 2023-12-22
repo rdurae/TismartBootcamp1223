@@ -46,7 +46,9 @@ namespace WCFTismartLibrary
             while (sqlDataReader.Read())
             {
                 bookSelection.Id = Int32.Parse(sqlDataReader[0].ToString());
-                bookSelection.IsReserved = bool.Parse(sqlDataReader[1].ToString());                
+                bookSelection.IsReserved = bool.Parse(sqlDataReader[1].ToString()); 
+                bookSelection.Title = sqlDataReader[2].ToString();
+                bookSelection.Code = sqlDataReader[3].ToString();
             } 
 
             _connection.Close();
