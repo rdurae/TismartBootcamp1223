@@ -46,13 +46,19 @@ namespace MVCTismartLibrary.Controllers
             {
                 Session["CurrentUser"] = user;
                 Session.Timeout = 2;
-                return RedirectToAction("Index", "BookReservation");
+                return RedirectToAction("Index", "BookReservation", user);
             }
             else
             {
                 ViewBag.LoginError = "El usuario no existe o contraseña incorrecta";
                 return View();
             }
+        }
+
+        public ActionResult Logout()
+        {            
+            Session.Clear();
+            return RedirectToAction("Index");
         }
     }
 }

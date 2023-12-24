@@ -26,7 +26,7 @@ namespace WCFTismartLibrary
         IEnumerable<BookReservation> ListBooksReservations();
 
         [OperationContract]
-        void BookReservation(Book book);
+        void BookReservation(Book book, User user);        
 
         [OperationContract]
         Book BookSelection(int id);
@@ -102,7 +102,7 @@ namespace WCFTismartLibrary
         [DataMember]
         public string Password { get; set; }
         [DataMember]
-        public bool isActive { get; set; }
+        public bool IsActive { get; set; }
     }
 
     [DataContract]

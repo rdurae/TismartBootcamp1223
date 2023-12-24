@@ -14,7 +14,9 @@ namespace MVCTismartLibrary.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.UserName = "Rodrigo";
             return View();
+            
         }
 
         public ActionResult About()

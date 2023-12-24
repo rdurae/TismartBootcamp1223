@@ -21,7 +21,8 @@
     </script>
 }
 
-<h2>Bienvenido xxx</h2>
+<h2>Bienvenido @ViewBag.UserName</h2>
+<a href="@Url.Action("Logout", "Login")">Cerrar Sesión</a>
 <h5>Disponibilidad de Libros</h5>
 
 <table class="table">

@@ -1,4 +1,5 @@
 ﻿using MVCTismartLibrary.Models;
+using MVCTismartLibrary.TismartLibraryService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace MVCTismartLibrary.Controllers
     {
         TismartLibraryService.Service1Client wcfTismartLibraryService = new TismartLibraryService.Service1Client();
 
-        public ActionResult Index()
+        public ActionResult Index(User user)
         {
             if (Session["CurrentUser"] == null)
             {
@@ -21,6 +22,9 @@ namespace MVCTismartLibrary.Controllers
 
             var booksStatusList = wcfTismartLibraryService.ListBooksReservations();
 
+            var currentUser = Session["CurrentUser"];
+
+            ViewBag.UserName = user.FirstName;
             return View(booksStatusList);
         }
 
@@ -46,20 +50,20 @@ namespace MVCTismartLibrary.Controllers
             }
         }
 
-        //[Route("BookReservation/Reserve/{id}")]
-        //[HttpPatch]
         [HttpPost]
         public ActionResult Reserve(int id)
         {
             var book = wcfTismartLibraryService.BookSelection(id);
+            //obtener id de usuario de la sesion actual 
+            var currentUser = Session["CurrentUser"] as User;            
 
             if (book.IsReserved != true)
             {
-                wcfTismartLibraryService.BookReservation(book);
+                wcfTismartLibraryService.BookReservation(book, currentUser);
             }
 
-            //return RedirectToAction("Index", "BookReservation");
-            return Json(new { success = true, message = "Resource updated successfully" });
+            return RedirectToAction("Index", "BookReservation");
+            //return Json(new { success = true, message = "Registrado con éxito" });
         }
     }
 }

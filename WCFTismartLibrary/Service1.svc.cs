@@ -16,13 +16,14 @@ namespace WCFTismartLibrary
     {
 
         SqlConnection _connection = new SqlConnection(@"Server=(local)\SQLEXPRESS;database=DbTismartLibrary;Integrated Security=SSPI");
-
-        public void BookReservation(Book book)
+        
+        public void BookReservation(Book book, User user)        
         {
             _connection.Open();
             SqlCommand sqlCmd = new SqlCommand("SpBookReservation", _connection);
             sqlCmd.CommandType = CommandType.StoredProcedure;
 
+            sqlCmd.Parameters.AddWithValue("@idUser", user.Id);
             sqlCmd.Parameters.AddWithValue("@idBook", book.Id);
             sqlCmd.Parameters.AddWithValue("@isReserved", true);
             sqlCmd.Parameters.AddWithValue("@dateReservation", DateTime.Now);
@@ -97,7 +98,7 @@ namespace WCFTismartLibrary
                 user.LastName = sqlDataReader[2].ToString();
                 user.Email = sqlDataReader[3].ToString();
                 user.Password = sqlDataReader[4].ToString();
-                user.isActive = bool.Parse(sqlDataReader[5].ToString());
+                user.IsActive = bool.Parse(sqlDataReader[5].ToString());
             }
 
             _connection.Close();

@@ -295,13 +295,13 @@ namespace MVCTismartLibrary.TismartLibraryService {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsActiveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LastNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool isActiveField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -353,6 +353,19 @@ namespace MVCTismartLibrary.TismartLibraryService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsActive {
+            get {
+                return this.IsActiveField;
+            }
+            set {
+                if ((this.IsActiveField.Equals(value) != true)) {
+                    this.IsActiveField = value;
+                    this.RaisePropertyChanged("IsActive");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string LastName {
             get {
                 return this.LastNameField;
@@ -374,19 +387,6 @@ namespace MVCTismartLibrary.TismartLibraryService {
                 if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
                     this.PasswordField = value;
                     this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool isActive {
-            get {
-                return this.isActiveField;
-            }
-            set {
-                if ((this.isActiveField.Equals(value) != true)) {
-                    this.isActiveField = value;
-                    this.RaisePropertyChanged("isActive");
                 }
             }
         }
@@ -485,10 +485,10 @@ namespace MVCTismartLibrary.TismartLibraryService {
         System.Threading.Tasks.Task<MVCTismartLibrary.TismartLibraryService.BookReservation[]> ListBooksReservationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookReservation", ReplyAction="http://tempuri.org/IService1/BookReservationResponse")]
-        void BookReservation(MVCTismartLibrary.TismartLibraryService.Book book);
+        void BookReservation(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookReservation", ReplyAction="http://tempuri.org/IService1/BookReservationResponse")]
-        System.Threading.Tasks.Task BookReservationAsync(MVCTismartLibrary.TismartLibraryService.Book book);
+        System.Threading.Tasks.Task BookReservationAsync(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/BookSelection", ReplyAction="http://tempuri.org/IService1/BookSelectionResponse")]
         MVCTismartLibrary.TismartLibraryService.Book BookSelection(int id);
@@ -560,12 +560,12 @@ namespace MVCTismartLibrary.TismartLibraryService {
             return base.Channel.ListBooksReservationsAsync();
         }
         
-        public void BookReservation(MVCTismartLibrary.TismartLibraryService.Book book) {
-            base.Channel.BookReservation(book);
+        public void BookReservation(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user) {
+            base.Channel.BookReservation(book, user);
         }
         
-        public System.Threading.Tasks.Task BookReservationAsync(MVCTismartLibrary.TismartLibraryService.Book book) {
-            return base.Channel.BookReservationAsync(book);
+        public System.Threading.Tasks.Task BookReservationAsync(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user) {
+            return base.Channel.BookReservationAsync(book, user);
         }
         
         public MVCTismartLibrary.TismartLibraryService.Book BookSelection(int id) {

@@ -30,3 +30,12 @@ Muchas gracias
 ///////////////////////////
 
 - Se agregaron dialogos modales con bootstrap/jquery/ajax
+
+//////////////////////////////////
+
+- Se agregaron usuarios y cerrar sesión. Credenciales:
+
+	rdurae@gmail.com/reb00ter
+	arturo@gmail.com/reb00ter2
+	fiorella@gmail.com/reb00ter3
+	juan@gmail.com/reb00ter4 (desactivado)
