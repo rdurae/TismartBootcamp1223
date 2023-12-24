@@ -20,22 +20,28 @@ Muchas gracias
 
 ///////////////////////////////
 
-- Se agregó Login con Session de un minuto.
-- Onclick en tr de tabla funciona, queda pendiente agregar eventos de confirmacion.
+ Se agregó Login con Session de un minuto.
+ Onclick en tr de tabla funciona, queda pendiente agregar eventos de confirmacion.
 
 //////////////////////////////
 
-- Se agregó validacion de usuarion en WCF si es que existe y si está activo
+ Se agregó validacion de usuarion en WCF si es que existe y si está activo
 
 ///////////////////////////
 
-- Se agregaron dialogos modales con bootstrap/jquery/ajax
+ Se agregaron dialogos modales con bootstrap/jquery/ajax
 
 //////////////////////////////////
 
-- Se agregaron usuarios y cerrar sesión. Credenciales:
+ Se agregaron usuarios y cerrar sesión. Credenciales:
 
 	rdurae@gmail.com/reb00ter
 	arturo@gmail.com/reb00ter2
 	fiorella@gmail.com/reb00ter3
 	juan@gmail.com/reb00ter4 (desactivado)
+
+////////////////////////////////
+
+- Se mejoró la consulta que muestra los libros y las ultimas reservas activas
+- Se implementó el borrado lógico 
+- Se modificó el encabezado de las tablas
