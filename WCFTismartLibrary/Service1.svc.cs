@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -19,6 +20,9 @@ namespace WCFTismartLibrary
         
         public void BookReservation(Book book, User user)        
         {
+            var currentDateTime = DateTime.Now;
+            var todayEndTime = new DateTime(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day, 23, 59, 59);
+
             _connection.Open();
             SqlCommand sqlCmd = new SqlCommand("SpBookReservation", _connection);
             sqlCmd.CommandType = CommandType.StoredProcedure;
@@ -26,7 +30,8 @@ namespace WCFTismartLibrary
             sqlCmd.Parameters.AddWithValue("@idUser", user.Id);
             sqlCmd.Parameters.AddWithValue("@idBook", book.Id);
             sqlCmd.Parameters.AddWithValue("@isReserved", true);
-            sqlCmd.Parameters.AddWithValue("@dateReservation", DateTime.Now);
+            sqlCmd.Parameters.AddWithValue("@dateReservation", currentDateTime);
+            sqlCmd.Parameters.AddWithValue("@dateReservationEnd", todayEndTime);
             sqlCmd.ExecuteNonQuery();
 
             _connection.Close();
@@ -46,7 +51,7 @@ namespace WCFTismartLibrary
             SqlDataReader sqlDataReader = sqlCmd.ExecuteReader();
             while (sqlDataReader.Read())
             {
-                bookSelection.Id = Int32.Parse(sqlDataReader[0].ToString());
+                bookSelection.Id = int.Parse(sqlDataReader[0].ToString());
                 bookSelection.IsReserved = bool.Parse(sqlDataReader[1].ToString()); 
                 bookSelection.Title = sqlDataReader[2].ToString();
                 bookSelection.Code = sqlDataReader[3].ToString();
@@ -106,6 +111,38 @@ namespace WCFTismartLibrary
             return user;
         }
 
+        public bool IsUserInWatingList(Book book, User user)
+        {
+            _connection.Open();
+
+            SqlCommand sqlCmd = new SqlCommand("SpCheckUserAwaitingBook", _connection);
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Parameters.AddWithValue("@userId", user.Id);
+            sqlCmd.Parameters.AddWithValue("@bookId", book.Id);
+
+            int count = (int)sqlCmd.ExecuteScalar();
+
+            _connection.Close();
+
+            return count > 0;
+        }
+
+        public int WaitingListForBookCounter(Book book)
+        {
+            _connection.Open();
+
+            SqlCommand sqlCmd = new SqlCommand("SpWaitingListForBookCounter", _connection);
+            sqlCmd.CommandType = CommandType.StoredProcedure;            
+            sqlCmd.Parameters.AddWithValue("@bookId", book.Id);
+
+            int count = (int)sqlCmd.ExecuteScalar();
+
+            _connection.Close();
+
+            return count;
+        }
+
+
         public bool IsValidUser(UserCredentials userCredentials)
         {
             if (userCredentials.Email == null || userCredentials.Password == null)
@@ -142,7 +179,7 @@ namespace WCFTismartLibrary
                 {
                     booksReservations.Add(new BookReservation()
                     {                        
-                        Id = Int32.Parse(sqlDataReader[0].ToString()),
+                        Id = int.Parse(sqlDataReader[0].ToString()),
                         Code = sqlDataReader[1].ToString(),
                         Title = sqlDataReader[2].ToString(),
                         IsReserved = bool.Parse(sqlDataReader[3].ToString()),
@@ -156,5 +193,36 @@ namespace WCFTismartLibrary
             return booksReservations;
 
         }
+
+        public void ReservationQueue(Book book, User user)
+        {
+            var userForBookWaiterCounter = WaitingListForBookCounter(book);
+            var priority = "P" + (userForBookWaiterCounter + 1).ToString();
+            var manyDaysAfter = userForBookWaiterCounter + 1;
+
+            _connection.Open();
+            SqlCommand sqlCmd = new SqlCommand("SpWaitReservationInsert", _connection);
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+
+            sqlCmd.Parameters.AddWithValue("@idBook", book.Id);
+            sqlCmd.Parameters.AddWithValue("@idUser", user.Id);
+            sqlCmd.Parameters.AddWithValue("@priority", priority);            
+            sqlCmd.Parameters.AddWithValue("@dateReservation", NextDay(manyDaysAfter).Item1);
+            sqlCmd.Parameters.AddWithValue("@dateReservationEnd", NextDay(manyDaysAfter).Item2);
+            sqlCmd.ExecuteNonQuery();
+
+            _connection.Close();
+        }
+
+        private Tuple<DateTime, DateTime> NextDay(int manyDaysAfter)
+        {
+            DateTime nextDay = DateTime.Now.AddDays(manyDaysAfter);
+
+            DateTime startDateTime = new DateTime(nextDay.Year, nextDay.Month, nextDay.Day, 0, 0, 0);
+            DateTime endDateTime = new DateTime(nextDay.Year, nextDay.Month, nextDay.Day, 23, 59, 59); 
+
+            return Tuple.Create(startDateTime, endDateTime);
+        }
     }
 }
+

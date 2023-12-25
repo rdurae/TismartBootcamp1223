@@ -36,6 +36,15 @@ namespace WCFTismartLibrary
 
         [OperationContract]
         bool IsValidUser(UserCredentials userCredentials);
+
+        [OperationContract] 
+        void ReservationQueue(Book book, User user);
+
+        [OperationContract]
+        bool IsUserInWatingList(Book book, User user);
+
+        [OperationContract]
+        int WaitingListForBookCounter(Book book);
     }
 
     // Utilice un contrato de datos, como se ilustra en el ejemplo siguiente, para agregar tipos compuestos a las operaciones de servicio.
@@ -114,5 +123,22 @@ namespace WCFTismartLibrary
         public string Email { get; set; }
         [DataMember]
         public string Password { get; set; }
+    }
+
+    [DataContract]
+    public class WaitReservation
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int BookId { get; set; }
+        [DataMember]
+        public int UserId { get; set; }
+        [DataMember]
+        public int Priority { get; set; }
+        [DataMember]
+        public string DateTimeReservation { get; set; }
+        [DataMember]
+        public string DateTimeReservationEnd { get; set; }
     }
 }

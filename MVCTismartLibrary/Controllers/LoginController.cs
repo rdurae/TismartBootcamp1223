@@ -45,8 +45,8 @@ namespace MVCTismartLibrary.Controllers
             if (user != null && loginDto.Email == user.Email && loginDto.Password == user.Password)
             {
                 Session["CurrentUser"] = user;
-                Session.Timeout = 2;
-                return RedirectToAction("Index", "BookReservation", user);
+                Session.Timeout = 5;
+                return RedirectToAction("Index", "BookReservation");
             }
             else
             {

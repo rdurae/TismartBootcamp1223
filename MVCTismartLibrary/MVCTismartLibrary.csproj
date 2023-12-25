@@ -226,6 +226,8 @@
     <Content Include="Views\Shared\DisplayTemplates\BooleanAsString.cshtml" />
     <Content Include="Views\BookReservation\_ToReserveBook.cshtml" />
     <Content Include="Views\BookReservation\_BookIsReserved.cshtml" />
+    <Content Include="Views\BookReservation\_UserForWaitingList.cshtml" />
+    <Content Include="Views\BookReservation\_UserAlreadyInWaitingList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

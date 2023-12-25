@@ -96,4 +96,46 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ReservationQueue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCFTismartLibrary" minOccurs="0" name="book" nillable="true" type="q9:Book" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WCFTismartLibrary" minOccurs="0" name="user" nillable="true" type="q10:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReservationQueueResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsUserInWatingList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WCFTismartLibrary" minOccurs="0" name="book" nillable="true" type="q11:Book" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCFTismartLibrary" minOccurs="0" name="user" nillable="true" type="q12:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsUserInWatingListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsUserInWatingListResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WaitingListForBookCounter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WCFTismartLibrary" minOccurs="0" name="book" nillable="true" type="q13:Book" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WaitingListForBookCounterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WaitingListForBookCounterResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

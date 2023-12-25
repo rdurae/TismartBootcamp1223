@@ -1,4 +1,5 @@
-﻿using MVCTismartLibrary.Models;
+﻿using Microsoft.Ajax.Utilities;
+using MVCTismartLibrary.Models;
 using MVCTismartLibrary.TismartLibraryService;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace MVCTismartLibrary.Controllers
 {
     public class BookReservationController : Controller
     {
-        TismartLibraryService.Service1Client wcfTismartLibraryService = new TismartLibraryService.Service1Client();
+        Service1Client wcfTismartLibraryService = new Service1Client();
 
-        public ActionResult Index(User user)
+        public ActionResult Index()
         {
             if (Session["CurrentUser"] == null)
             {
@@ -32,32 +33,48 @@ namespace MVCTismartLibrary.Controllers
 
         public ActionResult RequestForReservation(int id)
         {
-            var book = wcfTismartLibraryService.BookSelection(id);
+            var currentUser = Session["CurrentUser"] as User;
+            var book = wcfTismartLibraryService.BookSelection(id);            
+            var waitingListForBookCounter = wcfTismartLibraryService.WaitingListForBookCounter(book);
+            var isUserInWaitingList = wcfTismartLibraryService.IsUserInWatingList(book, currentUser);
+     
 
-            if (book == null || book.IsReserved == true)
+            var bookSelection = new BookSelectionDto()
             {
-                return PartialView("_BookIsReserved");
-            }
-            else
+                Id = book.Id,
+                IsReserved = book.IsReserved,
+                Title = book.Title,
+                Code = book.Code
+            };
+
+            if (book.IsReserved == true)
             {
-                var bookSelection = new BookSelectionDto()
+                if (waitingListForBookCounter >= 3)
                 {
-                    Id = book.Id,
-                    IsReserved = book.IsReserved,
-                    Title = book.Title,
-                    Code = book.Code
-                };
+                    return PartialView("_BookIsReserved", bookSelection);
+                }
 
-                return PartialView("_ToReserveBook", bookSelection);
-            }
+                if (isUserInWaitingList == true)
+                {
+                    return PartialView("_UserAlreadyInWaitingList");
+                }
+                else
+                {
+                    wcfTismartLibraryService.ReservationQueue(book, currentUser);
+
+                    return PartialView("_UserForWaitingList");
+                }
+            }       
+
+            return PartialView("_ToReserveBook", bookSelection);
+
         }
 
         [HttpPost]
         public ActionResult Reserve(int id)
         {
             var book = wcfTismartLibraryService.BookSelection(id);
-            //obtener id de usuario de la sesion actual 
-            var currentUser = Session["CurrentUser"] as User;            
+            var currentUser = Session["CurrentUser"] as User;
 
             if (book.IsReserved != true)
             {
@@ -65,7 +82,6 @@ namespace MVCTismartLibrary.Controllers
             }
 
             return RedirectToAction("Index", "BookReservation");
-            //return Json(new { success = true, message = "Registrado con éxito" });
         }
     }
 }

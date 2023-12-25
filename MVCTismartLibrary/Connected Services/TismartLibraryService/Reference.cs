@@ -523,6 +523,24 @@ namespace MVCTismartLibrary.TismartLibraryService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/IsValidUser", ReplyAction="http://tempuri.org/IService1/IsValidUserResponse")]
         System.Threading.Tasks.Task<bool> IsValidUserAsync(MVCTismartLibrary.TismartLibraryService.UserCredentials userCredentials);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ReservationQueue", ReplyAction="http://tempuri.org/IService1/ReservationQueueResponse")]
+        void ReservationQueue(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ReservationQueue", ReplyAction="http://tempuri.org/IService1/ReservationQueueResponse")]
+        System.Threading.Tasks.Task ReservationQueueAsync(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/IsUserInWatingList", ReplyAction="http://tempuri.org/IService1/IsUserInWatingListResponse")]
+        bool IsUserInWatingList(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/IsUserInWatingList", ReplyAction="http://tempuri.org/IService1/IsUserInWatingListResponse")]
+        System.Threading.Tasks.Task<bool> IsUserInWatingListAsync(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WaitingListForBookCounter", ReplyAction="http://tempuri.org/IService1/WaitingListForBookCounterResponse")]
+        int WaitingListForBookCounter(MVCTismartLibrary.TismartLibraryService.Book book);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WaitingListForBookCounter", ReplyAction="http://tempuri.org/IService1/WaitingListForBookCounterResponse")]
+        System.Threading.Tasks.Task<int> WaitingListForBookCounterAsync(MVCTismartLibrary.TismartLibraryService.Book book);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -606,6 +624,30 @@ namespace MVCTismartLibrary.TismartLibraryService {
         
         public System.Threading.Tasks.Task<bool> IsValidUserAsync(MVCTismartLibrary.TismartLibraryService.UserCredentials userCredentials) {
             return base.Channel.IsValidUserAsync(userCredentials);
+        }
+        
+        public void ReservationQueue(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user) {
+            base.Channel.ReservationQueue(book, user);
+        }
+        
+        public System.Threading.Tasks.Task ReservationQueueAsync(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user) {
+            return base.Channel.ReservationQueueAsync(book, user);
+        }
+        
+        public bool IsUserInWatingList(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user) {
+            return base.Channel.IsUserInWatingList(book, user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsUserInWatingListAsync(MVCTismartLibrary.TismartLibraryService.Book book, MVCTismartLibrary.TismartLibraryService.User user) {
+            return base.Channel.IsUserInWatingListAsync(book, user);
+        }
+        
+        public int WaitingListForBookCounter(MVCTismartLibrary.TismartLibraryService.Book book) {
+            return base.Channel.WaitingListForBookCounter(book);
+        }
+        
+        public System.Threading.Tasks.Task<int> WaitingListForBookCounterAsync(MVCTismartLibrary.TismartLibraryService.Book book) {
+            return base.Channel.WaitingListForBookCounterAsync(book);
         }
     }
 }

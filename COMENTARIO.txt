@@ -40,8 +40,20 @@ Muchas gracias
 	fiorella@gmail.com/reb00ter3
 	juan@gmail.com/reb00ter4 (desactivado)
 
+
 ////////////////////////////////
 
 - Se mejoró la consulta que muestra los libros y las ultimas reservas activas
 - Se implementó el borrado lógico 
 - Se modificó el encabezado de las tablas
+
+//////////////////
+
+- Se bloquea libro reservado por el usuario
+
+//////////////////
+
+- se agrego logica de reserva y lista de espera con prioridades y fechas sucedaneas. Se adicionarion dos usuarios mas para pruebas 
+	
+	diego@gmail.com/reb00ter5
+	alberto@gmail.com/reb00ter6

@@ -1,6 +1,4 @@
-﻿@model MVCTismartLibrary.Models.BookSelectionDto
-
-<div class="modal fade" id="itemDetailsModal" tabindex="-1" role="dialog" aria-labelledby="itemDetailsModalLabel" aria-hidden="true">
+﻿<div class="modal fade" id="itemDetailsModal" tabindex="-1" role="dialog" aria-labelledby="itemDetailsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><strong>NO ES POSIBLE RESERVAR EL LIBRO: @Html.DisplayFor(model => model.Title) </strong></p>
+                <p><strong>USTED YA SE ENCUENTRA EN LA LISTA DE ESPERA, POR FAVOR ESPERAR SU LIBERACION</strong></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
