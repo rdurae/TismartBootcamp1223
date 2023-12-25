@@ -6,6 +6,21 @@
 
 }
 
+@section styles {
+    <style>
+        /* Add custom styles for disabled rows */
+        .disabled {
+            background-color: #f8d7da; /* Light red background color */
+            color: #721c24; /* Dark red text color */
+        }
+
+        .disabled-overlay {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            pointer-events: none; /* Allow clicks to pass through the overlay */
+        }
+    </style>
+}
+
 @section Scripts{
     <script>
     $(function () {
@@ -40,13 +55,16 @@
             @*@Html.DisplayNameFor(model => model.IsReserved)*@ Estado
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
             @*@Html.DisplayNameFor(model => model.DateTimeReservation)*@ Fecha de Reserva
         </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr data-id="@item.Id" class="table-active">
+        <tr data-id="@item.Id" @(item.UserId.ToString() == ViewBag.CurrentUserId.ToString() ? "class=disabled table-active" : "class=table-active")>
             <td>
                 @index
             </td>
@@ -66,7 +84,10 @@
                     <text>NO RESERVADO</text>
                 }
             </td>
-            <td>                
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
                 @if (item.DateTimeReservation == null || item.DateTimeReservation == "")
                 {
                     <text>SIN FECHA DE RESERVA</text>
@@ -83,5 +104,7 @@
 </table>
 
 <div id="itemDetailsContainer"></div>
+
+
 
 

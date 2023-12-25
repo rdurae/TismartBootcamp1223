@@ -72,6 +72,8 @@ namespace WCFTismartLibrary
         [DataMember]
         public bool IsReserved { get; set; }
         [DataMember]
+        public string UserId { get; set; }
+        [DataMember]
         public string DateTimeReservation { get; set; }
     }
 

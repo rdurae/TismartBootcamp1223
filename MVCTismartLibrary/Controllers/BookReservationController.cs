@@ -22,9 +22,11 @@ namespace MVCTismartLibrary.Controllers
 
             var booksStatusList = wcfTismartLibraryService.ListBooksReservations();
 
-            var currentUser = Session["CurrentUser"];
+            var currentUser = Session["CurrentUser"] as User;
 
-            ViewBag.UserName = user.FirstName;
+            ViewBag.UserName = currentUser.FirstName;
+            ViewBag.CurrentUserId = currentUser.Id;
+
             return View(booksStatusList);
         }
 

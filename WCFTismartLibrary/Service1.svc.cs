@@ -146,7 +146,8 @@ namespace WCFTismartLibrary
                         Code = sqlDataReader[1].ToString(),
                         Title = sqlDataReader[2].ToString(),
                         IsReserved = bool.Parse(sqlDataReader[3].ToString()),
-                        DateTimeReservation = sqlDataReader[4].ToString()
+                        UserId= sqlDataReader[4].ToString(),
+                        DateTimeReservation = sqlDataReader[5].ToString()
                     });
                 }
   
