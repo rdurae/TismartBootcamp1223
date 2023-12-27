@@ -52,10 +52,7 @@
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.IsReserved)*@ Estado
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
+        </th>  
         <th>
             @*@Html.DisplayNameFor(model => model.DateTimeReservation)*@ Fecha de Reserva
         </th>
@@ -82,9 +79,6 @@
                 {
                     <text>NO RESERVADO</text>
                 }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
             </td>
             <td>
                 @if (item.DateTimeReservation == null || item.DateTimeReservation == "")
